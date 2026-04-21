@@ -1,26 +1,37 @@
 @page {
   size: A4;
-  margin: 14mm 14mm;
+  margin: 12mm 12mm 14mm;
 }
 
 :root {
   --ink: #201f1e;
   --ink-soft: #323130;
   --ink-mute: #605e5c;
+  --ink-faint: #8a8886;
   --accent: #0078d4;
+  --accent-deep: #106ebe;
+  --accent-soft: #deecf9;
+  --accent-tint: #f3f9fd;
   --border: #edebe9;
   --border-strong: #d2d0ce;
-  --bg: #fff;
-  --surface: #fff;
+  --surface: #ffffff;
+  --rail-tint: #f6f8fb;
   --font-sans: "Segoe UI Variable", "Segoe UI", "Inter", ui-sans-serif, system-ui, -apple-system, Roboto, sans-serif;
+}
+
+* {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+  color-adjust: exact !important;
 }
 
 html, body {
   background: #fff !important;
-  color: #201f1e !important;
+  color: var(--ink) !important;
   font-family: var(--font-sans);
-  font-size: 10pt;
-  line-height: 1.45;
+  font-size: 9.75pt;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 .no-print { display: none !important; }
@@ -29,9 +40,11 @@ html, body {
   max-width: none;
   padding: 0;
   display: grid;
-  grid-template-columns: 38mm 1fr;
-  gap: 10mm;
+  grid-template-columns: 52mm 1fr;
+  gap: 8mm;
 }
+
+/* ---------- Rail ---------- */
 
 .rail {
   position: static;
@@ -42,29 +55,30 @@ html, body {
 .rail-inner {
   display: block;
   height: auto;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
+  background: var(--rail-tint);
+  border: 0.3pt solid var(--border);
+  border-radius: 3pt;
+  padding: 6mm 5mm;
   overflow: visible;
 }
 
 .avatar {
-  width: 30mm;
-  height: 30mm;
+  width: 36mm;
+  height: 36mm;
   border-radius: 50%;
-  border: 0.3pt solid var(--border-strong);
-  margin-bottom: 4mm;
+  border: 0.5pt solid var(--border-strong);
+  margin: 0 auto 4mm;
+  display: block;
   box-shadow: none;
 }
 
 .name {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 20pt;
+  font-size: 18pt;
   letter-spacing: -0.03em;
-  margin: 0 0 2pt;
+  line-height: 1.05;
+  margin: 0 0 1.5mm;
   color: var(--ink);
 }
 
@@ -72,21 +86,24 @@ html, body {
   font-family: var(--font-sans);
   font-style: normal;
   font-weight: 500;
-  color: var(--ink-soft);
-  font-size: 10pt;
+  color: var(--accent-deep);
+  font-size: 9pt;
+  line-height: 1.35;
   margin: 0 0 5mm;
+  padding-bottom: 4mm;
+  border-bottom: 0.3pt solid var(--border-strong);
 }
 
 .contact {
   list-style: none;
   padding: 0;
-  margin: 0 0 4mm;
+  margin: 0;
   display: block;
-  font-size: 8.5pt;
+  font-size: 8.25pt;
   color: var(--ink-soft);
 }
 .contact li {
-  padding: 1pt 0;
+  padding: 0.8mm 0;
   display: flex;
   align-items: center;
   gap: 2mm;
@@ -95,9 +112,11 @@ html, body {
   width: 9pt;
   height: 9pt;
   flex: 0 0 9pt;
-  color: var(--ink-mute);
+  color: var(--accent);
 }
-.contact a { border: none; text-decoration: none; color: var(--ink); }
+.contact a { border: none; text-decoration: none; color: var(--ink-soft); word-break: break-word; }
+
+/* ---------- Content ---------- */
 
 .content {
   padding: 0;
@@ -105,8 +124,8 @@ html, body {
 }
 
 section {
-  padding: 0 0 5mm;
-  margin: 0 0 4mm;
+  padding: 0;
+  margin: 0 0 5mm;
   background: transparent;
   border: none;
   border-radius: 0;
@@ -118,8 +137,8 @@ section {
 
 .section-head {
   margin: 0 0 3mm;
-  padding-bottom: 1.5mm;
-  border-bottom: 0.5pt solid var(--border-strong);
+  padding: 0 0 1.5mm;
+  border-bottom: 1pt solid var(--accent);
   gap: 3mm;
   display: flex;
   align-items: baseline;
@@ -127,16 +146,16 @@ section {
 
 .section-n {
   font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 8pt;
+  font-weight: 700;
+  font-size: 8.5pt;
   color: var(--accent);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
 .section-head h2 {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 13pt;
+  font-size: 13.5pt;
   letter-spacing: -0.02em;
   margin: 0;
   color: var(--ink);
@@ -147,55 +166,81 @@ p { margin: 1.5mm 0; }
   font-family: var(--font-sans);
   font-style: normal;
   font-weight: 500;
-  font-size: 10.5pt;
-  color: var(--ink-soft);
+  font-size: 10pt;
+  color: var(--ink);
+  margin-top: 0;
 }
+
+/* ---------- Roles ---------- */
 
 .role {
   display: grid;
-  grid-template-columns: 28mm 1fr;
+  grid-template-columns: 32mm 1fr;
   gap: 4mm;
   padding: 3mm 0;
   border-top: 0.3pt solid var(--border);
   break-inside: avoid;
   page-break-inside: avoid;
 }
-.role:first-of-type { border-top: none; padding-top: 0; }
+.role:first-of-type { border-top: none; padding-top: 1mm; }
 
 .role-when {
   font-size: 7.5pt;
   color: var(--ink-mute);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   padding-top: 1mm;
-  font-weight: 500;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .role-body h3 {
   font-family: var(--font-sans);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 11pt;
   margin: 0;
   color: var(--ink);
+  letter-spacing: -0.01em;
 }
-.role-where { font-size: 9pt; color: var(--ink-soft); margin: 0.5mm 0 1.5mm; }
-.role-where em { color: var(--accent); font-style: normal; font-weight: 500; }
+.role-body h3 .sep { color: var(--ink-faint); font-weight: 400; margin: 0 1mm; }
+.role-where {
+  font-size: 9.25pt;
+  color: var(--accent-deep);
+  font-weight: 600;
+  margin: 0.3mm 0 2mm;
+}
+.role-where em { color: var(--accent); font-style: normal; font-weight: 600; }
 
 .bullets {
-  list-style: disc;
-  padding-left: 4mm;
-  margin: 1mm 0 0;
+  list-style: none;
+  padding: 0;
+  margin: 1.5mm 0 0;
 }
 .bullets li {
   font-size: 9pt;
-  margin: 0.6mm 0;
-  padding: 0;
+  margin: 0.8mm 0;
+  padding: 0 0 0 3.5mm;
+  position: relative;
+  color: var(--ink-soft);
+  line-height: 1.45;
 }
-.bullets li::before { display: none; }
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.6mm;
+  width: 1.3mm;
+  height: 1.3mm;
+  border-radius: 50%;
+  background: var(--accent);
+  display: block;
+}
+
+/* ---------- Tags ---------- */
 
 .tags {
-  margin: 2mm 0 0;
-  gap: 1mm;
+  margin: 2.5mm 0 0;
+  gap: 1.2mm;
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -203,53 +248,73 @@ p { margin: 1.5mm 0; }
 }
 .tags li {
   font-size: 7.5pt;
-  padding: 0.3mm 2mm;
-  border: 0.3pt solid var(--border-strong);
-  border-radius: 2px;
-  color: var(--ink-soft);
-  background: #fff;
+  padding: 0.4mm 2mm;
+  border: 0.3pt solid var(--accent-soft);
+  border-radius: 99px;
+  color: var(--accent-deep);
+  background: var(--accent-tint);
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
+
+/* ---------- Timeline (Employers) ---------- */
 
 .timeline {
   list-style: none;
-  padding: 0; margin: 0;
+  padding: 0;
+  margin: 0;
 }
 .timeline li {
   display: flex;
   justify-content: space-between;
-  padding: 1.5mm 0;
+  align-items: baseline;
+  padding: 1.8mm 0;
   border-bottom: 0.3pt solid var(--border);
-  font-size: 9pt;
+  font-size: 9.25pt;
+  gap: 3mm;
 }
 .timeline li:last-child { border-bottom: none; }
+.timeline .where {
+  color: var(--ink);
+  font-weight: 600;
+}
 .timeline .when {
   color: var(--ink-mute);
   font-size: 8pt;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  font-weight: 500;
 }
+
+/* ---------- Skills ---------- */
 
 .skill-groups {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5mm;
+  gap: 6mm;
 }
 .skill-groups h3 {
   font-family: var(--font-sans);
   font-size: 7.5pt;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-mute);
-  margin: 0 0 1.5mm;
+  margin: 0 0 2mm;
+  padding-bottom: 1mm;
+  border-bottom: 0.3pt solid var(--border);
 }
+
+/* ---------- Footer ---------- */
 
 .page-footer {
   margin-top: 5mm;
   padding-top: 2mm;
   border-top: 0.3pt solid var(--border);
-  font-size: 8pt;
+  font-size: 7.5pt;
   color: var(--ink-mute);
+  text-align: center;
 }
 .page-footer a { color: var(--ink-mute); text-decoration: none; border: none; }
 
