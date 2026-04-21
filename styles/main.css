@@ -76,13 +76,12 @@ html[lang="sv"] [lang="en"] { display: none; }
 .appbar {
   position: sticky; top: 0; z-index: 100;
   height: var(--appbar-h);
-  display: grid; grid-template-columns: auto 1fr auto;
-  align-items: center;
-  padding: 0 8px 0 0;
+  display: flex; align-items: center;
+  padding: 0 16px 0 0;
   background: var(--shell-dark); color: var(--shell-ink);
   box-shadow: 0 1px 0 rgba(0,0,0,.3);
 }
-.appbar-brand { display: inline-flex; align-items: center; height: 100%; }
+.appbar-brand { display: inline-flex; align-items: center; height: 100%; flex: 0 0 auto; }
 .appbar-menu {
   width: 48px; height: 48px; display: grid; place-items: center;
   color: inherit; background: transparent; border: none; cursor: pointer;
@@ -100,27 +99,7 @@ html[lang="sv"] [lang="en"] { display: none; }
 }
 .appbar-logo .brand-mute { color: var(--shell-ink-mute); font-weight: 400; }
 
-.appbar-search {
-  display: flex; align-items: center; height: 30px;
-  max-width: 520px; width: 100%; margin: 0 auto;
-  background: #fff; border-radius: 2px; padding: 0 10px; gap: 8px;
-  border: 1px solid transparent;
-  transition: border-color .15s;
-}
-.appbar-search:focus-within { border-color: var(--accent); }
-.appbar-search svg { width: 14px; height: 14px; color: var(--ink-3); }
-.appbar-search input {
-  flex: 1; border: none; outline: none; background: transparent;
-  font: inherit; font-size: 13px; color: var(--ink);
-}
-.appbar-search input::placeholder { color: var(--ink-4); }
-.appbar-search kbd {
-  font: 500 11px var(--font-mono); color: var(--ink-3);
-  background: #f3f2f1; border: 1px solid var(--border);
-  padding: 1px 5px; border-radius: 2px;
-}
-
-.appbar-actions { display: inline-flex; align-items: center; gap: 2px; }
+.appbar-actions { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; }
 .appbar-btn {
   height: 32px; padding: 0 12px;
   display: inline-flex; align-items: center; gap: 6px;
@@ -233,6 +212,7 @@ html[lang="sv"] [lang="en"] { display: none; }
   letter-spacing: -.045em; line-height: .96;
   color: var(--ink);
 }
+.hero-left .name .n-part { display: block; }
 .hero-left .name .dot { color: var(--accent); }
 
 .hero-left .role-lede,
@@ -313,13 +293,14 @@ html[lang="sv"] [lang="en"] { display: none; }
    Article layout — sticky section cap + content column
 ====================================================================== */
 .article {
-  display: grid; grid-template-columns: 200px 1fr;
-  gap: 48px; padding: 56px 64px 0;
+  padding: 56px 64px 0;
 }
-.row { display: contents; }
+.row {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 48px;
+}
 
 .sidecap {
-  grid-column: 1;
   position: sticky; top: calc(var(--appbar-h) + 24px);
   align-self: start;
   font-family: var(--font-sans);
@@ -340,12 +321,12 @@ html[lang="sv"] [lang="en"] { display: none; }
 }
 
 .row > .sidecap + * {
-  grid-column: 2;
   padding-bottom: 56px; border-bottom: 1px solid var(--border);
   margin-bottom: 56px;
 }
 .row:last-child > .sidecap + * {
   border-bottom: none;
+  margin-bottom: 0;
 }
 
 /* Content typography */
@@ -415,7 +396,7 @@ p { color: var(--ink-2); margin: 10px 0; max-width: 680px; font-size: 15px; }
 /* ---- Employers horizontal timeline ---- */
 .employers { position: relative; padding: 24px 0 8px; }
 .employers::before {
-  content: ""; position: absolute; left: 0; right: 0; top: 40px;
+  content: ""; position: absolute; left: 0; right: 0; top: 64px;
   height: 1px; background: var(--border-2);
 }
 .employers-row {
@@ -522,10 +503,8 @@ p { color: var(--ink-2); margin: 10px 0; max-width: 680px; font-size: 15px; }
   .hero-left .role-lede, .hero-left .subtitle { font-size: 18px; }
 
   .command-row { padding: 12px 24px; }
-  .article {
-    padding: 32px 24px 0;
-    grid-template-columns: 1fr; gap: 0;
-  }
+  .article { padding: 32px 24px 0; }
+  .row { grid-template-columns: 1fr; gap: 0; }
   .sidecap { position: static; margin-bottom: 16px; }
   .row > .sidecap + * { padding-bottom: 32px; margin-bottom: 32px; }
 
@@ -543,7 +522,6 @@ p { color: var(--ink-2); margin: 10px 0; max-width: 680px; font-size: 15px; }
     padding: 20px 24px;
   }
 
-  .appbar-search { display: none; }
 }
 
 @media (max-width: 480px) {
