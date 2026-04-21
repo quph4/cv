@@ -1,6 +1,6 @@
 @page {
   size: A4;
-  margin: 12mm 12mm 14mm;
+  margin: 14mm 14mm 16mm;
 }
 
 :root {
@@ -31,108 +31,157 @@ html, body {
   font-family: var(--font-sans);
   font-size: 9.75pt;
   line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+  margin: 0 !important;
 }
 
-.no-print { display: none !important; }
+.no-print,
+.appbar,
+.siderail,
+.breadcrumb,
+.command-bar,
+.tabs { display: none !important; }
 
-.layout {
-  max-width: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 52mm 1fr;
-  gap: 8mm;
+/* ----- Layout ----- */
+
+.shell {
+  display: block !important;
+  min-height: 0 !important;
+  grid-template-columns: none !important;
 }
 
-/* ---------- Rail ---------- */
+.workspace {
+  padding: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
 
-.rail {
-  position: static;
-  height: auto;
-  padding: 0;
+/* ----- Resource header ----- */
+
+.resource-head {
+  display: grid !important;
+  grid-template-columns: 28mm 1fr;
+  gap: 6mm;
+  align-items: center;
+  margin: 0 0 5mm;
+  padding: 0 0 4mm;
+  border-bottom: 0.5pt solid var(--border-strong);
+}
+
+.resource-icon {
+  width: 28mm !important;
+  height: 28mm !important;
+  border-radius: 3mm !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+.resource-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.resource-title { display: block; }
+.resource-title .kind {
+  font-size: 7.5pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 600;
   display: block;
+  margin-bottom: 1mm;
 }
-.rail-inner {
-  display: block;
-  height: auto;
-  background: var(--rail-tint);
-  border: 0.3pt solid var(--border);
-  border-radius: 3pt;
-  padding: 6mm 5mm;
-  overflow: visible;
-}
-
-.avatar {
-  width: 36mm;
-  height: 36mm;
-  border-radius: 50%;
-  border: 0.5pt solid var(--border-strong);
-  margin: 0 auto 4mm;
-  display: block;
-  box-shadow: none;
-}
-
-.name {
+.resource-title h1,
+.resource-title .name {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 18pt;
+  font-size: 22pt;
   letter-spacing: -0.03em;
   line-height: 1.05;
   margin: 0 0 1.5mm;
   color: var(--ink);
 }
-
-.tagline {
+.resource-title .subtitle {
   font-family: var(--font-sans);
-  font-style: normal;
   font-weight: 500;
   color: var(--accent-deep);
-  font-size: 9pt;
-  line-height: 1.35;
-  margin: 0 0 5mm;
-  padding-bottom: 4mm;
-  border-bottom: 0.3pt solid var(--border-strong);
-}
-
-.contact {
-  list-style: none;
-  padding: 0;
+  font-size: 10.5pt;
   margin: 0;
+}
+
+/* ----- Essentials (contact card) ----- */
+
+.essentials {
+  background: var(--rail-tint);
+  border: 0.3pt solid var(--border);
+  border-radius: 2pt;
+  padding: 4mm 5mm;
+  margin: 0 0 5mm;
+}
+.essentials h2 {
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+  margin: 0 0 2.5mm;
   display: block;
+}
+.essentials h2::before { content: none !important; }
+
+.essentials dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 8mm;
+  margin: 0;
+}
+.essentials dl > div {
+  display: grid;
+  grid-template-columns: 28mm 1fr;
+  gap: 3mm;
+  padding: 0.7mm 0;
+  font-size: 8.75pt;
+  align-items: baseline;
+}
+.essentials dt {
+  color: var(--ink-mute);
+  font-weight: 500;
   font-size: 8.25pt;
-  color: var(--ink-soft);
+  margin: 0;
 }
-.contact li {
-  padding: 0.8mm 0;
-  display: flex;
-  align-items: center;
-  gap: 2mm;
+.essentials dd {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 500;
+  overflow-wrap: anywhere;
 }
-.contact .ico {
-  width: 9pt;
-  height: 9pt;
-  flex: 0 0 9pt;
-  color: var(--accent);
+.essentials dd a { color: var(--ink); text-decoration: none; }
+.essentials .status { display: inline-flex; align-items: center; gap: 2mm; }
+.essentials .status .dot {
+  width: 2mm; height: 2mm; border-radius: 50%;
+  background: #107c10; display: inline-block;
+  box-shadow: none;
 }
-.contact a { border: none; text-decoration: none; color: var(--ink-soft); word-break: break-word; }
 
-/* ---------- Content ---------- */
-
-.content {
-  padding: 0;
-  max-width: none;
-}
+/* ----- Sections ----- */
 
 section {
-  padding: 0;
-  margin: 0 0 5mm;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
+  padding: 0 !important;
+  margin: 0 0 4mm !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   break-inside: avoid;
   page-break-inside: avoid;
-  animation: none;
+  animation: none !important;
+}
+section.essentials {
+  padding: 4mm 5mm !important;
+  background: var(--rail-tint) !important;
+  border: 0.3pt solid var(--border) !important;
+  border-radius: 2pt !important;
+  margin: 0 0 5mm !important;
 }
 
 .section-head {
@@ -161,17 +210,16 @@ section {
   color: var(--ink);
 }
 
-p { margin: 1.5mm 0; }
+p { margin: 1.5mm 0; color: var(--ink-soft); }
 .lead {
   font-family: var(--font-sans);
-  font-style: normal;
   font-weight: 500;
   font-size: 10pt;
   color: var(--ink);
   margin-top: 0;
 }
 
-/* ---------- Roles ---------- */
+/* ----- Roles ----- */
 
 .role {
   display: grid;
@@ -236,7 +284,7 @@ p { margin: 1.5mm 0; }
   display: block;
 }
 
-/* ---------- Tags ---------- */
+/* ----- Tags ----- */
 
 .tags {
   margin: 2.5mm 0 0;
@@ -254,10 +302,9 @@ p { margin: 1.5mm 0; }
   color: var(--accent-deep);
   background: var(--accent-tint);
   font-weight: 500;
-  letter-spacing: 0.01em;
 }
 
-/* ---------- Timeline (Employers) ---------- */
+/* ----- Timeline ----- */
 
 .timeline {
   list-style: none;
@@ -274,10 +321,7 @@ p { margin: 1.5mm 0; }
   gap: 3mm;
 }
 .timeline li:last-child { border-bottom: none; }
-.timeline .where {
-  color: var(--ink);
-  font-weight: 600;
-}
+.timeline .where { color: var(--ink); font-weight: 600; }
 .timeline .when {
   color: var(--ink-mute);
   font-size: 8pt;
@@ -287,7 +331,7 @@ p { margin: 1.5mm 0; }
   font-weight: 500;
 }
 
-/* ---------- Skills ---------- */
+/* ----- Skills ----- */
 
 .skill-groups {
   display: grid;
@@ -306,7 +350,7 @@ p { margin: 1.5mm 0; }
   border-bottom: 0.3pt solid var(--border);
 }
 
-/* ---------- Footer ---------- */
+/* ----- Footer ----- */
 
 .page-footer {
   margin-top: 5mm;
