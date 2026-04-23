@@ -1,32 +1,28 @@
 # cv
 
-Personal CV site. Plain HTML/CSS/JS, hosted on GitHub Pages, PDF generated in CI.
+Personal CV site. Plain HTML/CSS/JS, hosted on GitHub Pages. No build step, no framework, no bundler.
 
-- Live: https://quph4.github.io/cv/
-- PDF: https://quph4.github.io/cv/cv.pdf
+Live at **https://quph4.github.io/cv/**
 
 ## Local editing
 
-Just open `index.html` in a browser. No build step, no `npm install` needed for normal edits.
+Open `index.html` in a browser. That's it — edit, save, refresh. `Ctrl+P` gives you the print stylesheet.
 
-## How it works
+## Files
 
-- `index.html` — the whole page.
-- `styles/main.css` — screen styles.
-- `styles/print.css` — applies in print/PDF (single-column A4, no buttons).
-- `scripts/main.js` — theme toggle + current-year stamp.
-- `.github/workflows/build-pdf.yml` — on push, renders the page to `cv.pdf` via Puppeteer and commits it back.
-- `.github/workflows/deploy.yml` — publishes the repo root to GitHub Pages.
+- `index.html` — the whole page
+- `styles/main.css` — screen styles (V2 Editorial Portal theme)
+- `styles/print.css` — print / PDF overrides (single-column A4)
+- `scripts/main.js` — language toggle, scroll-spy, year stamp
+- `assets/` — photo + favicon
+- `.github/workflows/deploy.yml` — publishes the repo root to GitHub Pages
 
-## One-time setup
+## PDF
 
-1. Create a repo named `cv` under `quph4` on GitHub.
-2. Push this directory as `main`.
-3. In the repo → Settings → Pages → Source: **GitHub Actions**.
-4. First push triggers both workflows. PDF appears after the first build.
+The Download PDF button in the header calls `window.print()`, which uses `print.css` to render an A4 version of the live page. One source of truth — no separate PDF artifact to keep in sync.
 
-## Verification
+## Setup
 
-- Local: open `index.html`, hit `Ctrl+P` → print preview should be clean A4.
-- Live: visit the URL above, click Download PDF.
-- Lighthouse: run in DevTools, aim for 95+ everywhere.
+1. Repo `cv` under `quph4` on GitHub.
+2. Settings → Pages → Source: **GitHub Actions**.
+3. Push to `main` → `deploy.yml` publishes automatically.
