@@ -335,24 +335,33 @@ p.lead {
   font-weight: 400; letter-spacing: -.01em;
   margin: 0 0 16px; max-width: 700px;
 }
-p { color: var(--ink-2); margin: 10px 0; max-width: 680px; font-size: 15px; }
+p { color: var(--ink-1); margin: 12px 0; max-width: 720px; font-size: 15.5px; line-height: 1.65; }
 
 /* ---- Role card ---- */
 .role-card {
-  display: grid; grid-template-columns: 120px 1fr;
-  gap: 32px; padding: 28px 0;
+  display: block;
+  padding: 28px 0;
   border-top: 1px solid var(--border);
 }
 .role-list > .role-card:first-child { border-top: none; padding-top: 0; }
 .role-year {
-  font-family: var(--font-display);
-  font-size: 40px; font-weight: 700; letter-spacing: -.03em; line-height: 1;
-  color: var(--ink);
+  display: block;
+  font: 600 11px var(--font-mono);
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 10px;
 }
-.role-year span {
-  display: block; margin-top: 8px;
-  font: 500 11px var(--font-mono); letter-spacing: .08em;
-  color: var(--ink-3); text-transform: uppercase;
+.role-year .y-from,
+.role-year .y-to {
+  display: inline;
+  font: inherit; letter-spacing: inherit;
+}
+.role-year .y-from,
+.role-year .y-to { color: var(--ink-3); }
+.role-year .y-from::after {
+  content: " \2014  ";
+  color: var(--accent);
+  font-weight: 700;
 }
 .role-body h3 {
   margin: 0; font-size: 22px; font-weight: 600;
@@ -360,21 +369,22 @@ p { color: var(--ink-2); margin: 10px 0; max-width: 680px; font-size: 15px; }
 }
 .role-body .where,
 .role-body .role-where {
-  margin: 4px 0 14px;
-  font-size: 14px; color: var(--accent-deep); font-weight: 600;
+  margin: 6px 0 18px;
+  font-size: 15px; color: var(--accent-deep); font-weight: 600;
 }
 
 .bullets {
   list-style: none; padding: 0; margin: 0;
-  display: flex; flex-direction: column; gap: 6px; max-width: 680px;
+  display: flex; flex-direction: column; gap: 10px; max-width: 720px;
 }
 .bullets li {
-  position: relative; padding-left: 22px;
-  font-size: 14.5px; color: var(--ink-2); line-height: 1.55;
+  position: relative; padding-left: 24px;
+  font-size: 15.5px; color: var(--ink-1); line-height: 1.65;
 }
 .bullets li::before {
   content: "→"; position: absolute; left: 0; top: 0;
   color: var(--accent); font-weight: 600;
+  line-height: 1.65;
 }
 
 /* ---- Tags ---- */
@@ -508,9 +518,7 @@ p { color: var(--ink-2); margin: 10px 0; max-width: 680px; font-size: 15px; }
   .sidecap { position: static; margin-bottom: 16px; }
   .row > .sidecap + * { padding-bottom: 32px; margin-bottom: 32px; }
 
-  .role-card { grid-template-columns: 1fr; gap: 8px; }
-  .role-year { font-size: 28px; }
-  .role-year span { display: inline-block; margin-left: 12px; margin-top: 0; }
+  .role-card { padding: 20px 0; }
 
   .employers-row { grid-template-columns: 1fr 1fr; }
   .skill-groups { grid-template-columns: 1fr; gap: 24px; }
